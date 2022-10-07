@@ -6,7 +6,7 @@
 	<artifactId>maven-web-application</artifactId>
 	<packaging>war</packaging>
 	
-	<version>0.0.1</version> 
+	<version>0.0.1-SNAPSHOT</version> 
 	
 	<name>maven-web-application</name>
 
@@ -96,13 +96,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://54.242.153.115:8081/repository/tesla-fe-releases/</url>
+	      <url>http://54.165.244.159:8081/repository/Team2Releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://54.242.153.115:8081/repository/tesla-fe-snapshots/</url>
+	      <url>http://54.165.244.159:8081/repository/Team2Snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
