@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+    tools {
+        maven "maven3.8.6"
+    }
+    stages {
+        stage('1PullCode'){
+            steps{
+                sh "echo 'pulling code from github repository' "
+                git 'https://github.com/mashiofu/maven-web-application'
+            }
+        }
+        stage('2Build&Test'){
+            steps{
+                sh "echo 'performing build and unit testing' "
+                sh "mvn clean package"
+            }
+        }
+        stage('3CodeQualityTesting'){
+            steps{
+                sh "echo 'performing code quality analysis' "
+                sh "mvn sonar:sonar"
+            }
+        }
+        stage('4Artifacts'){
+            steps{
+                sh "echo 'Uploading artifacts to Nexus' "
+                sh "mvn deploy"
+            }
+        }
+        stage('5DeployUAT'){
+            steps{
+                sh "echo 'Deploying to Tomcat sever' "
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.87.89.23:8080/')], contextPath: null, onFailure: false, war: 'target/*war'
+            }
+        }
+    }
+}
